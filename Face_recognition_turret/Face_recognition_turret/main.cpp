@@ -18,7 +18,7 @@ int main() {
 	else {
 		cout << "Failed to connect.\n";
 	}
-	char* data = (char*)malloc(sizeof(char) * 50);
+	
 	string temp;
 	int dataX;
 	int dataY;
@@ -29,10 +29,14 @@ int main() {
 		cout << "Enter Y: ";
 		cin >> dataY;
 		temp = "X" + to_string(dataX) + "Y" + to_string(dataY);
-		for (int i = 0; temp[i] != '\0'; i++) {
-			data[i] = temp[i];
-		}
-		arduino.writeSerialPort(data, MAX_DATA_LENGTH);
+		char* buff = new char[temp.length()+1];
+		temp.copy(buff, temp.size() + 1);
+		buff[temp.size()] = '\0';
+		cout << buff << "\n";
+		
+		
+		arduino.writeSerialPort(buff, MAX_DATA_LENGTH);
+		
 	}
 	return 0;
 }
