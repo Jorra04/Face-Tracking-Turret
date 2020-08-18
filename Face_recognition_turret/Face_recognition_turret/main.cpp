@@ -17,6 +17,7 @@ int main() {
 	}
 	else {
 		cout << "Failed to connect.\n";
+		exit(1);
 	}
 	
 	string temp;
